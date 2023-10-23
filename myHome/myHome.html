@@ -1,0 +1,196 @@
+<html>
+
+<head>
+<style>
+body {
+	font-family: Helvetica;
+	background-color: #111111;
+	color: white;
+}
+img {
+	object-fit: cover;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+function getTopFromId(id) {
+	var bodyRect = document.body.getBoundingClientRect(),
+	element = document.getElementById(id),
+	elemRect = element.getBoundingClientRect(),
+	offset  = elemRect.top - bodyRect.top;
+	return offset;
+}
+
+function inViewportFromId(id) {
+var bounding = document.getElementById(id).getBoundingClientRect();
+return (bounding.top >= 0 &&
+	bounding.left >= 0 &&
+	bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
+	bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight));
+}
+</script>
+
+</head>
+
+<body style="overflow-x: hidden;">
+
+<div id="titleBox" style="height: 100vh; width: 100vw; position: fixed; background-image: url('mountain.jpg'); background-size: cover; transform: scale(1);">
+<p id="title" style="font-size: 200px; text-align: center; margin-top: calc(50vh - 100px);">My Home</p>
+</div>
+<div style="height: 100vh; width: 100vw;"></div>
+<script>
+$(window).scroll(function() {
+	 if ($(window).scrollTop() > $(window).height()) {
+		$('#titleBox').css({ display: 'none' });
+		$('#titleBox').css({ transform:  'scale(1)' });
+		$('#title').css({ 'font-size': '200px'});
+	} else {
+		$('#titleBox').css({ display: 'block' });
+		$('#titleBox').css({ transform:  'scale(' + (1-$(window).scrollTop()/5000) + ')' });
+		console.log( 1-$(window).scrollTop()/1000);
+		$('#title').css({ 'font-size': 200 - $(window).scrollTop()/10 + 'px'});
+	}
+	
+});
+</script>
+
+<div style="width: 100vw; min-height: 100vh; position: relative; background-color: #111111;">
+
+<br>
+<center>
+<span style="font-size: 80px; font-weight: bold;">Home is where the heart is.</span><br>
+<div style="font-size: 24px; margin-left: 25vw; margin-right: 25vw; color: #ccc;">
+Make a little conversation.
+So long I've been waiting.
+So let go of myself and feel alive.
+So many nights I thought it over.
+Told myself I kind of liked her.
+But there was something missing in her eyes.
+I was stumbling, looking in the dark.
+With an empty heart.
+But you say you feel the same.
+Could we ever be enough?
+Baby we could be enough.
+</div>
+</center>
+<br><br><br><br><br><br><br><br><br><br>
+
+<div style="position: relative; overflow:hidden; display:block; width: 100vw; height: 80vh;">
+<video style="position: relative; width: 100%;" autoplay loop muted>
+<source src="marbleRoll.mp4" type="video/mp4">
+</video>
+<div style="position:absolute; top:0; left:0; bottom:0; z-index:1; opacity: 0.6; background-color: black;">
+<p style="font-size: 70px; font-weight: bold; margin-left: 20vw; margin-right: 40vw;">Games. Crafts. All home-made.</p>
+</div>
+</div>
+<p style="font-size: 24px; margin-left: 25vw; margin-right: 25vw;"><b>All exciting games you can play. </b><span style="color: #ccc">Including marble rolling, railway tracks, and all other stuff. You will feel fresh and will never be bored in the cozy, splendid and gorgeous ambience.</span></p>
+<br><br><br>
+</div>
+
+<!--
+<div id="container">
+	<img id="home" src="livingRoom/IMG_3357.JPG"></img>
+</div>
+<script>
+var originalTop = getTopFromId("home");
+$(window).scroll(function() {
+	var photoNumber = Math.floor(3357 + ($(window).scrollTop() - originalTop - 200) / 20);
+	if(photoNumber < 3357) {
+		photoNumber = 3357;
+	} else if (photoNumber > 3459) {
+		
+	} else {
+		$('#home').stop().attr("src", "livingRoom/IMG_" + photoNumber + ".JPG");
+	}
+	
+	if ($(window).scrollTop() < originalTop) {
+		$('#home').css({ position: 'static' });
+		$('#space').css({ height: '2000px'});
+	} else if (photoNumber > 3459) {
+		$('#home').css({ position: 'static' });
+		photoNumber = 3459;
+		$('#space').css({ height: 'calc(100vh + 10px)'});
+	}	else {
+		$('#home').css({ position: 'absolute' });
+		$('#home').stop().css({ top: $(window).scrollTop() + 10 + 'px'});
+		$('#space').css({ height: '2000px'});
+	}
+});
+</script>
+<style>
+#container > #home {
+	position: relative;
+	height: 99vh;
+	width: calc(95vh / .5625);
+}
+</style>
+
+<div id="space" style="height: 2000px;"></div>
+-->
+
+
+<div>
+	<div class="fade" style="background-color: #00000000;">
+	<img src="IMG_2110.jpeg" style="width: 40vw; height: 40vh; margin-left: 40px; margin-right: 40px;"></img>
+	<img src="IMG_2508.jpeg" style="width: 40vw; height: 40vh; margin-left: 40px; margin-right: 40px;"></img>
+	</div>
+	<div class="fade" style="background-color: cornflowerblue;">More</div>
+	<div class="fade" style="background-color: cornflowerblue;">to</div>
+	<div class="fade" style="background-color: cornflowerblue;">come...</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+$(window).on("load",function() {
+  $(window).scroll(function() {
+    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+    $(".fade").each(function() {
+      /* Check the location of each desired element */
+      var objectTop = $(this).offset().top;
+      var objectBottom = $(this).offset().top + $(this).outerHeight();
+      
+      /* If the element is completely within bounds of the window, fade it in */
+      if (objectTop + 100 < windowBottom) { //object comes into view (scrolling down)
+        if ($(this).css("opacity")==0) {
+        	$(this).fadeTo(200, 1);
+       		$(this).css({ '-webkit-transition': '-webkit-transform 0.1s ease-in-out' });
+        	$(this).css({ '-webkit-transform': 'translate(0, 0)' });
+        }
+      } else { //object goes out of view (scrolling up)
+        if ($(this).css("opacity")==1) {
+        	$(this).fadeTo(20, 0);
+        	$(this).css({ '-webkit-transition-property': 'none' });
+	       	$(this).css({ '-webkit-transform': 'translate(0, 100px)' });
+        }
+      }
+    });
+  }).scroll(); //invoke scroll-handler on page-load
+});
+</script>
+<style>
+.fade {
+  padding: 30px;
+  margin: 20px;
+  border-radius: 30px;
+  background-color: lightgreen;
+  color: #444;
+  opacity: 1;
+  -webkit-transform: transition(0, 100px);
+}
+</style>
+
+<br><br><br><br><br><br><br><br>
+
+</body>
+
+<script>
+document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML.split(". ").join("<span style='font-family:Avenir'>.</span> ");
+document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML.split(".<").join("<span style='font-family:Avenir'>.</span><");
+document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML.split(".\n").join("<span style='font-family:Avenir'>.</span>\n");
+document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML.split(", ").join("<span style='font-family:Avenir'>,</span> ");
+</script>
+
+
+</html>
