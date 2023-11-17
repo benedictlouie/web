@@ -1,0 +1,122 @@
+<html>
+
+<head>
+<meta charset="utf-8">
+<style>
+
+body {
+	font-family: Helvetica;
+	overflow-x: hidden;
+}
+</style>
+</head>
+
+<center>
+<h1>Slide Rule</h1>
+<p>
+A: precise left<br>
+D: precise right<br>
+Z: high-speed left<br>
+C: high-speed right<br>
+refresh to return to original position<br>
+</p><br>
+</center>
+
+<div style="position: relative; height: 100%;">
+<div id="move" style="position: absolute; top: 0%; width: 100%; height: 20%; background-color: lemonchiffon"></div><br>
+<div id="identity" style="position: absolute; top: 20%; width: 100%; height: 20%; background-color: lightsalmon"></div><br>
+<div id="reciprocal" style="position: absolute; top: 40%; width: 100%; height: 20%; background-color: lavender"></div><br>
+<div id="squared" style="position: absolute; top: 60%; width: 100%; height: 20%; background-color: lightskyblue"></div><br>
+<div id="cubed" style="position: absolute; top: 80%; width: 100%; height: 20%; background-color: mediumspringgreen"></div><br>
+</div>
+
+<script>
+
+var move = 0;
+
+// move
+for(var i=1; i<=10; i+=0.1) {
+	const left = Math.log10(i)*100;
+	document.getElementById("move").innerHTML += "<span style='color: #555; position: absolute; bottom: 0; left: " + left + "%;'>|</span>";
+}
+for(var i=1; i<=10; i+=1) {
+	const left = Math.log10(i)*100;
+	document.getElementById("move").innerHTML += "<span style='position: absolute; bottom: 10px; left: " + left + "%;'>" + i + "</span>";
+}
+document.getElementById("move").innerHTML += "<span style='position: absolute; bottom: 10px; left: " + Math.log10(Math.E)*100 + "%;'>e</span>";
+document.getElementById("move").innerHTML += "<span style='position: absolute; bottom: 10px; left: " + Math.log10(Math.PI)*100 + "%;'>π</span>";
+
+// identity
+for(var i=1; i<=10; i+=0.1) {
+	const left = Math.log10(i)*100;
+	document.getElementById("identity").innerHTML += "<span style='color: #555; position: absolute; left: " + left + "%;'>|</span>";
+}
+for(var i=1; i<=10; i+=1) {
+	const left = Math.log10(i)*100;
+	document.getElementById("identity").innerHTML += "<span style='position: absolute; top: 10px; left: " + left + "%;'>" + i + "</span>";
+}
+document.getElementById("identity").innerHTML += "<span style='position: absolute; top: 10px; left: " + Math.log10(Math.E)*100 + "%;'>e</span>";
+document.getElementById("identity").innerHTML += "<span style='position: absolute; top: 10px;  left: " + Math.log10(Math.PI)*100 + "%;'>π</span>";
+
+// reciprocal
+for(var i=10; i>=1; i-=0.1) {
+	const left = Math.log10(10/i)*100;
+	document.getElementById("reciprocal").innerHTML += "<span style='color: #555; position: absolute; left: " + left + "%;'>|</span>";
+}
+for(var i=10; i>=1; i-=1) {
+	const left = Math.log10(10/i)*100;
+	document.getElementById("reciprocal").innerHTML += "<span style='position: absolute; top: 10px; left: " + left + "%;'>" + i + "</span>";
+}
+
+// squared
+for(var i=1; i<=10; i+=1) {
+	const left = Math.log10(i)*100/2;
+	document.getElementById("squared").innerHTML += "<span style='position: absolute; top: 10px; left: " + left + "%;'>" + i + "</span>";
+	document.getElementById("squared").innerHTML += "<span style='color: #555; position: absolute; left: " + left + "%;'>|</span>";
+}
+for(var i=20; i<=100; i+=20) {
+	const left = Math.log10(i)*100/2;
+	document.getElementById("squared").innerHTML += "<span style='position: absolute; top: 10px; left: " + left + "%;'>" + i + "</span>";
+	document.getElementById("squared").innerHTML += "<span style='color: #555; position: absolute; left: " + left + "%;'>|</span>";
+}
+
+// cubed
+for(var i=1; i<=10; i+=1) {
+	const left = Math.log10(i)*100/3;
+	document.getElementById("cubed").innerHTML += "<span style='position: absolute; top: 10px; left: " + left + "%;'>" + i + "</span>";
+	document.getElementById("cubed").innerHTML += "<span style='color: #555; position: absolute; left: " + left + "%;'>|</span>";
+}
+for(var i=20; i<=100; i+=20) {
+	const left = Math.log10(i)*100/3;
+	document.getElementById("cubed").innerHTML += "<span style='position: absolute; top: 10px; left: " + left + "%;'>" + i + "</span>";
+	document.getElementById("cubed").innerHTML += "<span style='color: #555; position: absolute; left: " + left + "%;'>|</span>";
+}
+for(var i=200; i<=1000; i+=400) {
+	const left = Math.log10(i)*100/3;
+	document.getElementById("cubed").innerHTML += "<span style='position: absolute; top: 10px; left: " + left + "%;'>" + i + "</span>";
+	document.getElementById("cubed").innerHTML += "<span style='color: #555; position: absolute; left: " + left + "%;'>|</span>";
+}
+
+document.body.onkeydown = function(e){
+	if(e.keyCode == 65) {
+		move -= 2;
+   		document.getElementById("move").style.transform = "translateX(" + move + "px)";
+    }
+	if(e.keyCode == 68) {
+		move += 2;
+		document.getElementById("move").style.transform = "translateX(" + move + "px)";
+    }
+    if(e.keyCode == 90) {
+		move -= 30;
+   		document.getElementById("move").style.transform = "translateX(" + move + "px)";
+    }
+	if(e.keyCode == 67) {
+		move += 30;
+		document.getElementById("move").style.transform = "translateX(" + move + "px)";
+    }
+}
+
+
+</script>
+
+</html>
